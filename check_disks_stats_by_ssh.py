@@ -107,7 +107,13 @@ def get_disks_stats(client):
         line = line.strip()
 
         # By pass the firt line, we already know about it
-        _,_,device,nb_reads,_,nb_sec_read,_,nb_writes,_,nb_sec_write,_,_,io_time,_ = tuple([e for e in line.split(' ') if e])
+        data = tuple([e for e in line.split(' ') if e])
+        device = data[2]
+        nb_reads = data[3]
+        nb_sec_read = data[5]
+        nb_writes = data[7]
+        nb_sec_write = data[9]
+        io_time = data[12]
 
         if not device in stats:
             stats[device] = []
